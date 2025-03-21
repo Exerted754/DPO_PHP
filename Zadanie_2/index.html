@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма обратной связи</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <div id="feedback-form">
+            <form id="feedbackForm">
+                <input type="text" id="fullName" name="fullName" placeholder="ФИО" required>
+                <input type="email" id="email" name="email" placeholder="E-mail" required>
+                <input type="tel" id="phone" name="phone" placeholder="Телефон" required>
+                <textarea id="comment" name="comment" placeholder="Комментарий" required></textarea>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+        <div id="feedback-message" style="display:none;">
+            <h2>Спасибо!</h2>
+            <p>Ваше сообщение успешно отправлено.</p>
+            <p>Мы свяжемся с вами в ближайшее время.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
