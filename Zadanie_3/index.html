@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Геокодер на Vue.js</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <form @submit.prevent="fetchGeocode">
+      <input v-model="address" type="text" placeholder="Введите адрес" required>
+      <button type="submit">Получить данные</button>
+    </form>
+
+    <div class="result" v-if="result">
+      <h3>Результат:</h3>
+      <p><strong>Структурированный адрес:</strong></p>
+      <ul>
+        <li v-for="component in result.structuredAddress" :key="component.kind">
+          {{ component.kind }}: {{ component.name }}
+        </li>
+      </ul>
+      <p><strong>Координаты:</strong> {{ result.coordinates.join(', ') }}</p>
+      <p><strong>Ближайшее метро:</strong> {{ result.metro }}</p>
+    </div>
+
+    <p v-if="error" style="color: red;">{{ error }}</p>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          address: '',
+          result: null,
+          error: null
+        };
+      },
+      methods: {
+        async fetchGeocode() {
+          this.result = null;
+          this.error = null;
+
+          try {
+            const response = await fetch('http://localhost:8000/backend.php', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ address: this.address })
+            });
+
+            if (!response.ok) throw new Error('Ошибка сервера');
+
+            const data = await response.json();
+            if (data.error) throw new Error(data.error);
+
+            this.result = data;
+          } catch (err) {
+            this.error = err.message || 'Произошла ошибка';
+          }
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
