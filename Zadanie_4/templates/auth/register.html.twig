@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+{% block page_title %}Регистрация - Моя Библиотека{% endblock %}
+
+{% block main_content %}
+    <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7 col-sm-9">
+            <div class="card shadow-sm">
+                <div class="card-body p-4 p-md-5">
+                    <h1 class="card-title text-center mb-4 h3">Создать аккаунт</h1>
+
+                    {{ form_errors(registrationForm) }}
+
+                    {{ form_start(registrationForm, {"attr": {"class": "needs-validation", "novalidate": "novalidate"}}) }}
+                        <div class="mb-3">
+                            {{ form_row(registrationForm.email, {
+                                "label": "Электронная почта",
+                                "attr": {"placeholder": "your.email@example.com"}
+                            }) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(registrationForm.plainPassword.first, {
+                                "label": "Пароль",
+                                "attr": {"placeholder": "••••••••"}
+                            }) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(registrationForm.plainPassword.second, {
+                                "label": "Повторите пароль",
+                                "attr": {"placeholder": "••••••••"}
+                            }) }}
+                        </div>
+                        <div class="mb-3 form-check">
+                            {{ form_widget(registrationForm.agreeTerms) }}
+                            {{ form_label(registrationForm.agreeTerms, "Я согласен с условиями использования") }}
+                            {{ form_errors(registrationForm.agreeTerms) }}
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">Зарегистрироваться</button>
+                        </div>
+                    {{ form_end(registrationForm) }}
+
+                    <p class="mt-4 text-center">
+                        Уже зарегистрированы? <a href="{{ path("app_login") }}">Войти в аккаунт</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

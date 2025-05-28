@@ -1,0 +1,94 @@
+{% extends "base.html.twig" %}
+
+{% block page_title %}Редактирование - {{ book.workTitle }}{% endblock %}
+
+{% block main_content %}
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="card shadow-sm">
+                <div class="card-body p-4 p-md-5">
+                    <h1 class="card-title text-center mb-4 h3">Редактирование книги</h1>
+
+                    {{ form_start(form, {"attr": {"class": "needs-validation", "novalidate": "novalidate"}}) }}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form_row(form.workTitle, {
+                                    "label": "Название книги",
+                                    "attr": {"placeholder": "Введите название"}
+                                }) }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form_row(form.creatorName, {
+                                    "label": "Автор книги",
+                                    "attr": {"placeholder": "Введите имя автора"}
+                                }) }}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.completionDate, {
+                                "label": "Дата прочтения"
+                            }) }}
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="form-label">{{ form_label(form.coverFile) }}</label>
+                            {% if book.coverImageLocation %}
+                                <div class="d-flex align-items-center mb-2">
+                                    <img src="{{ asset("uploads/covers/" ~ book.coverImageLocation) }}" 
+                                         alt="Обложка {{ book.workTitle }}" 
+                                         class="me-3 cover-image" 
+                                         style="max-width: 100px; max-height: 150px;">
+                                    <div>
+                                        {% if form.deleteCoverFile is defined %}
+                                            <div class="form-check">
+                                                {{ form_widget(form.deleteCoverFile) }}
+                                                {{ form_label(form.deleteCoverFile, "Удалить текущую обложку") }}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {{ form_widget(form.coverFile) }}
+                            {{ form_errors(form.coverFile) }}
+                            <small class="text-muted">Поддерживаемые форматы: PNG, JPG</small>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">{{ form_label(form.bookFile) }}</label>
+                            {% if book.digitalFileLocation %}
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="bi bi-file-earmark-text fs-1 me-3"></i>
+                                    <div>
+                                        <p class="mb-1">{{ book.sourceBookFilename }}</p>
+                                        {% if form.deleteBookFile is defined %}
+                                            <div class="form-check">
+                                                {{ form_widget(form.deleteBookFile) }}
+                                                {{ form_label(form.deleteBookFile, "Удалить текущий файл книги") }}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {{ form_widget(form.bookFile) }}
+                            {{ form_errors(form.bookFile) }}
+                            <small class="text-muted">Максимальный размер: 5MB</small>
+                        </div>
+
+                        <div class="mb-4 form-check">
+                            {{ form_widget(form.isDownloadPermitted) }}
+                            {{ form_label(form.isDownloadPermitted, "Разрешить скачивание этой книги") }}
+                        </div>
+                        
+                        <hr class="my-4">
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="{{ path("app_home") }}" class="btn btn-secondary me-md-2">Отменить и вернуться</a>
+                            <button type="submit" class="btn btn-primary">{{ button_label|default("Сохранить изменения") }}</button>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html.twig" %}
+
+{% block page_title %}Вход - Моя Библиотека{% endblock %}
+
+{% block main_content %}
+<div class="row justify-content-center">
+    <div class="col-lg-5 col-md-7 col-sm-9">
+        <div class="card shadow-sm">
+            <div class="card-body p-4 p-md-5">
+                <form method="post">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, "security") }}</div>
+                    {% endif %}
+
+                    {% if app.user %}
+                        <div class="mb-3 text-center">
+                            <p>Вы уже вошли как {{ app.user.userIdentifier }}.</p>
+                            <a href="{{ path("app_logout") }}" class="btn btn-secondary">Выйти</a>
+                        </div>
+                    {% else %}
+                        <h1 class="card-title text-center mb-4 h3">Вход в аккаунт</h1>
+                        
+                        <div class="mb-3">
+                            <label for="inputEmail" class="form-label">Электронная почта</label>
+                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus placeholder="your.email@example.com">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="inputPassword" class="form-label">Пароль</label>
+                            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required placeholder="••••••••">
+                        </div>
+
+                        <input type="hidden" name="_csrf_token"
+                               value="{{ csrf_token("authenticate") }}"
+                        >
+
+                        {# <div class="checkbox mb-3">
+                            <label>
+                                <input type="checkbox" name="_remember_me"> Запомнить меня
+                            </label>
+                        </div> #}
+
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-lg" type="submit">
+                                Войти
+                            </button>
+                        </div>
+                        <p class="mt-4 text-center">
+                            Еще нет аккаунта? <a href="{{ path("app_register") }}">Создать аккаунт</a>
+                        </p>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,62 @@
+{% extends "base.html.twig" %}
+
+{% block page_title %}Добавить Новую Книгу - Моя Библиотека{% endblock %}
+
+{% block main_content %}
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="card shadow-sm">
+                <div class="card-body p-4 p-md-5">
+                    <h1 class="card-title text-center mb-4 h3">Форма добавления книги</h1>
+
+                    {{ form_start(form, {"attr": {"class": "needs-validation", "novalidate": "novalidate"}}) }}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form_row(form.workTitle, {
+                                    "label": "Название книги",
+                                    "attr": {"placeholder": "Введите название"}
+                                }) }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form_row(form.creatorName, {
+                                    "label": "Автор книги",
+                                    "attr": {"placeholder": "Введите имя автора"}
+                                }) }}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.completionDate, {
+                                "label": "Дата прочтения"
+                            }) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.coverFile, {
+                                "label": "Файл обложки (PNG, JPG)"
+                            }) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.bookFile, {
+                                "label": "Файл книги (до 5МБ)"
+                            }) }}
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            {{ form_widget(form.isDownloadPermitted) }}
+                            {{ form_label(form.isDownloadPermitted, "Разрешить скачивание этой книги") }}
+                        </div>
+                        
+                        <hr class="my-4">
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="{{ path("app_home") }}" class="btn btn-secondary me-md-2">Отменить и вернуться</a>
+                            <button type="submit" class="btn btn-primary">{{ button_label|default("Сохранить книгу") }}</button>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

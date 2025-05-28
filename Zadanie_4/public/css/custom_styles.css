@@ -1,0 +1,154 @@
+body {
+    background-color: #F8F8FF;
+    color: #2F4F4F;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #483D8B;
+}
+
+a {
+    color: #483D8B;
+}
+
+a:hover {
+    color: #B0C4DE;
+}
+
+.navbar {
+    background-color: #483D8B !important;
+    border-bottom: 2px solid #FFD700;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+    color: #F8F8FF !important; 
+}
+
+.navbar .nav-link:hover {
+    color: #FFD700 !important;
+}
+
+.navbar .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(248, 248, 255, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.btn-primary {
+    background-color: #483D8B; 
+    border-color: #483D8B;
+    color: #F8F8FF;
+}
+
+.btn-primary:hover {
+    background-color: #3A306A; 
+    border-color: #3A306A;
+    color: #F8F8FF;
+}
+
+.btn-secondary {
+    background-color: #B0C4DE; 
+    border-color: #B0C4DE;
+    color: #2F4F4F;
+}
+
+.btn-secondary:hover {
+    background-color: #98A9C0;
+    border-color: #98A9C0;
+    color: #2F4F4F;
+}
+
+.btn-danger {
+    background-color: #DC3545;
+    border-color: #DC3545;
+    color: #F8F8FF;
+}
+
+.form-control {
+    border: 1px solid #B0C4DE;
+    background-color: #FFFFFF;
+    color: #2F4F4F;
+    border-radius: 0.25rem;
+}
+
+.form-control:focus {
+    border-color: #483D8B;
+    box-shadow: 0 0 0 0.2rem rgba(72, 61, 139, 0.25);
+}
+
+.form-label {
+    color: #483D8B;
+    font-weight: bold;
+}
+
+.form-check-input:checked {
+    background-color: #483D8B; 
+    border-color: #483D8B;
+}
+
+.book-card {
+    background-color: #FFFFFF;
+    border: 1px solid #B0C4DE;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(72, 61, 139, 0.1);
+}
+
+.book-card img.cover-image {
+    max-width: 100px;
+    max-height: 150px;
+    object-fit: cover;
+    border-radius: 0.25rem;
+    border: 1px solid #B0C4DE;
+    margin-bottom: 1rem;
+}
+
+.book-card .book-title {
+    font-size: 1.25rem;
+    color: #483D8B;
+    margin-bottom: 0.5rem;
+}
+
+.book-card .book-author {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.book-card .book-actions a {
+    margin-right: 0.5rem;
+}
+
+.alert-success {
+    background-color: #D1E7DD;
+    border-color: #BADBCC;
+    color: #0F5132;
+}
+
+.alert-danger {
+    background-color: #F8D7DA;
+    border-color: #F5C2C7;
+    color: #842029;
+}
+
+.alert-warning {
+    background-color: #FFF3CD;
+    border-color: #FFECB5;
+    color: #664D03;
+}
+
+.main-content-container {
+    background-color: #FFFFFF;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 15px rgba(0,0,0,0.07);
+    margin-top: 2rem;
+}
+
